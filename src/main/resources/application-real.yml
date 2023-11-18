@@ -1,0 +1,9 @@
+spring:
+  profile:
+    group:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+  session:
+    store-type: jdbc
