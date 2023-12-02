@@ -7,14 +7,14 @@ spring:
     name: spring-webapp
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ledger_db?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/finni?serverTimezone=UTC
     username: root
-    password: Kjh950330!
+    password: ssyys0822!
   jpa:
     show-sql: true
     hibernate:
       format_sql: true
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true

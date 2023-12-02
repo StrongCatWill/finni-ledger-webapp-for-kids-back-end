@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    } </style>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form role="form" action="/members/new" th:object="${memberForm}" method="post">
+        <div class="form-group">
+            <label th:for="name">닉네임</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요"
+                   th:class="${#fields.hasErrors('name')}? 'form-controlfieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('name')}"
+               th:errors="*{name}">Incorrect date</p>
+        </div>
+        <div class="form-group">
+            <label th:for="age">나이</label>
+            <input type="number" th:field="*{age}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label th:for="email">E-MAIL</label>
+            <input type="text" th:field="*{email}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label th:for="role">권한</label>
+            <select th:field="*{role}" class="form-control">
+                <option th:each="roleValue : ${T(com.ledger.constant.Role).values()}"
+                    th:value="${roleValue.name()}"
+                    th:text="${roleValue.name()}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label th:for="profile">프로필 사진 선택</label>
+            <select th:field="*{profile}" class="form-control">
+                <option th:each="profileValue : ${T(com.ledger.constant.Profile).values()}"
+                        th:value="${profileValue.name()}"
+                        th:text="${profileValue.name()}">
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>
