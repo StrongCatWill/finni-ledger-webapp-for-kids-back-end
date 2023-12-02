@@ -4,7 +4,6 @@ import com.ledger.constant.Profile;
 import com.ledger.constant.Role;
 import jakarta.persistence.*;
 import lombok.*;
-import org.checkerframework.checker.units.qual.C;
 
 @Entity
 @Table(name="member")
@@ -37,11 +36,12 @@ public class Member extends BaseEntity {
     private Profile profile;    // 회원 프로필 사진
 
     @Builder(builderClassName = "OAuth2Register", builderMethodName = "userDetailRegister")
-    public Member(String nickname, Profile profile, String email, Role role) {
+    public Member(String nickname, Profile profile, String email, Role role, int age) {
         this.nickname = nickname;
         this.email = email;
         this.profile = profile;
         this.role = role;
+        this.age = age;
     }
 
     /**
