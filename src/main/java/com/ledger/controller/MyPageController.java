@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
-public class MyPageController {
+public class MyPageController{
 
     private final MemberService memberService;
     private final HttpSession httpSession;
@@ -58,7 +58,7 @@ public class MyPageController {
             member.setAge(memberForm.getAge());
             member.setProfile(memberForm.getProfile());
             member.setEmail(member.getEmail());
-
+            member.setPassword(memberForm.getPassword());
             member.setRole(Role.SOCIAL);
 
             memberService.update(member);

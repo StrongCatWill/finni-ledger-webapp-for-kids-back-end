@@ -10,5 +10,6 @@ public class MemberForm {
     private String email;
     private int age;
     private String profile;
+    private String password;
 
 }

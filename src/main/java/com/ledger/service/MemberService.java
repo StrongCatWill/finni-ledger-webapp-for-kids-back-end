@@ -1,8 +1,11 @@
 package com.ledger.service;
 
+import com.ledger.config.PasswordEncoderConfig;
 import com.ledger.entity.Member;
 import com.ledger.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,9 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class MemberService{
+public class MemberService {
+
+    protected Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final MemberRepository memberRepository;
+
+    private final PasswordEncoderConfig passwordEncoderConfig;
+
 
 
     public Member findByEmail(String userEmail) {
@@ -28,6 +36,8 @@ public class MemberService{
     * */
     @Transactional
     public void update(Member member) {
+        String encodedPassword = passwordEncoderConfig.encodePassword().encode(member.getPassword());
+        member.setPassword(encodedPassword);
         memberRepository.save(member);
     }
 
