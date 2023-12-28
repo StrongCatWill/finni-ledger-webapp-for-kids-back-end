@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum Role {
+public enum Role implements EnumCode{
 
     /**
      * 회원 권한 코드
@@ -16,5 +16,15 @@ public enum Role {
     SOCIAL("ROLE_SOCIAL", "일반 사용자");
 
     private final String key;
-    private final String title;
+    private final String desc;
+
+    @Override
+    public String getDesc() {
+        return desc;
+    }
+
+    @Override
+    public String getKey() {
+        return key;
+    }
 }
